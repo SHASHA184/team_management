@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Team, Person
-from .serializers import TeamSerializer, PersonSerializer
+from .serializers import TeamSerializer, PersonSerializer, PersonInTeamSerializer
 
 
 # CRUD операції для Teams (команди)
@@ -31,9 +31,13 @@ def team_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
-        # Отримання інформації про команду
+        # Отримання інформації про команду та її учасників
         serializer = TeamSerializer(team)
-        return Response(serializer.data)
+        team_data = serializer.data
+        persons = Person.objects.filter(team=team)
+        person_serializer = PersonInTeamSerializer(persons, many=True)
+        team_data["persons"] = person_serializer.data
+        return Response(team_data)
     elif request.method == "PUT":
         # Оновлення інформації про команду
         serializer = TeamSerializer(team, data=request.data)
