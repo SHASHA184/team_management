@@ -180,7 +180,7 @@ GET /api/team/1/
             "id": 1,
             "first_name": "Іван",
             "last_name": "Іванов",
-            "email": "
+            "email": "ivanov@example.com"
         }
     ]
 }
