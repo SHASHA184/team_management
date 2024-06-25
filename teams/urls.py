@@ -1,11 +1,12 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import TeamViewSet, PersonViewSet
-
-router = DefaultRouter()
-router.register(r'teams', TeamViewSet)
-router.register(r'persons', PersonViewSet)
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls)),
+    # URL маршрути для команд
+    path('teams/', views.team_list, name='team-list'), # Список команд (GET, POST)
+    path('teams/<int:pk>/', views.team_detail, name='team-detail'), # Деталі команди (GET, PUT, DELETE)
+
+    # URL маршрути для людей
+    path('persons/', views.person_list, name='person-list'), # Список людей (GET, POST)
+    path('persons/<int:pk>/', views.person_detail, name='person-detail'), # Деталі людини (GET, PUT, DELETE)
 ]

@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-# import config from root directory here
 from config import POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,6 +76,7 @@ WSGI_APPLICATION = 'team_management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Редагування конфігурації бази даних
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
