@@ -61,7 +61,7 @@ def team_detail(request, pk):
         person_serializer = PersonInTeamSerializer(persons, many=True)
         team_data["persons"] = (
             person_serializer.data
-        )  # Додавання даних про учасників до відповіді
+        )
         return Response(team_data)
 
     elif request.method == "PUT":

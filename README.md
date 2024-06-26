@@ -18,6 +18,8 @@ Team Management API - це REST API, створений на базі Django, я
     - [Перегляд інформації про команду](#перегляд-інформації-про-команду)
     - [Оновлення інформації про команду](#оновлення-інформації-про-команду)
     - [Видалення людини](#видалення-людини)
+    - [Пошук людини за ім'ям](#пошук-людини-за-імям)
+    - [Сортування людей за ім'ям](#сортування-людей-за-імям)
 
 ## Передумови
 
@@ -158,6 +160,7 @@ POST /api/persons/
 ```http
 
 {
+    "id": 1,
     "first_name": "Іван",
     "last_name": "Іванов",
     "email": "ivanov@example.com",
@@ -215,6 +218,14 @@ PUT /api/team/1/
 ```http
 {
     "name": "Нова команда 1"
+    "persons": [
+        {
+            "id": 1,
+            "first_name": "Іван",
+            "last_name": "Іванов",
+            "email": "ivanov@example.com"      
+        }
+    ]
 }
 ```
 
@@ -241,3 +252,46 @@ DELETE /api/person/1/
 
 HTTP 204 No Content
 ```
+
+### Пошук людини за ім'ям
+
+**Запит:**
+
+```http
+GET /api/persons/?search=Іван
+```
+
+**Відповідь:**
+
+```http
+[
+    {
+        "id": 1,
+        "first_name": "Іван",
+        "last_name": "Іванов",
+        "email": "ivanov@example.com",
+        "team": 1
+    }
+]
+```
+
+### Сортування людей за ім'ям
+
+**Запит:**
+
+```http
+GET /api/persons/?ordering=first_name
+```
+
+**Відповідь:**
+
+```http
+[
+    {
+        "id": 1,
+        "first_name": "Іван",
+        "last_name": "Іванов",
+        "email": "ivanov@example.com",
+        "team": 1
+    }
+]

@@ -25,7 +25,7 @@ class PersonSerializer(serializers.ModelSerializer):
         адресу електронної пошти (email) та ідентифікатор команди (team), до якої належить особа.
         Поле team є полем первинного ключа, яке читається, але не може бути змінено через цей серіалізатор.
     """
-    team = serializers.PrimaryKeyRelatedField(read_only=True)
+    team = serializers.PrimaryKeyRelatedField(read_only=False, queryset=Team.objects.all())
 
     class Meta:
         model = Person
