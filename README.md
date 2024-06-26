@@ -289,9 +289,17 @@ GET /api/persons/?ordering=first_name
 [
     {
         "id": 1,
+        "first_name": "Андрій",
+        "last_name": "Андрійов",
+        "email": "andriy.andriyov@example.com",
+        "team": 1
+    },
+    {
+        "id": 2,
         "first_name": "Іван",
         "last_name": "Іванов",
         "email": "ivanov@example.com",
         "team": 1
     }
 ]
+```
